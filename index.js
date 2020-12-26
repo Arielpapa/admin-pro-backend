@@ -8,6 +8,10 @@ const app = express();
 
 //configurar CORS
 app.use(cors());
+
+// Lectura del body
+app.use( express.json() );
+
 //base de datos
 dbConnection();
 
@@ -17,14 +21,10 @@ dbConnection();
 //arielpapa
 //franco0711
 // Rutas
-app.get ('/', (req, res) => {
+app.use ('/api/usuarios', require('./routes/usuarios'));
+app.use('/api/login', require('./routes/auth'));
 
-    res.json({
-        ok:true,
-        msg: 'hola mundo'
-    });
 
-})
 
 
 app.listen(process.env.PORT, () =>{
